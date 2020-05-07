@@ -1,14 +1,19 @@
 <template>
     <div class="app-container">
         <el-table :data="tableData" class="mt20 fz12" border>
-            <el-table-column prop="dsfdsga" label="评论ID" align="center"> </el-table-column>
-            <el-table-column prop="dsfdsgb" label="评论内容" align="center"> </el-table-column>
+            <el-table-column prop="id" label="评论ID" align="center"> </el-table-column>
+            <el-table-column prop="commentContent" label="评论内容" align="center"> </el-table-column>
             <el-table-column prop="dsfdsgc" label="所属活动" align="center"> </el-table-column>
-            <el-table-column prop="dsfdsgd" label="发布人" align="center"> </el-table-column>
-            <el-table-column prop="dsfdsge" label="发布时间" align="center"> </el-table-column>
+            <el-table-column prop="commentPeople" label="发布人" align="center"> </el-table-column>
+            <el-table-column  label="发布时间" align="center"> 
+    
+       <template slot-scope="scope">
+                    {{scope.row.commentTime | timee}}
+                </template>
+    </el-table-column>
             <el-table-column prop="dsfdsgf" label="操作" align="center">
                 <template slot-scope="scope" align="center">
-                    <span class="ls sz" @click="shnhase(scope.$index)">删除</span>
+                    <span class="ls sz" @click="shnhase(scope.row)">删除</span>
                 </template>
             </el-table-column>
         </el-table>
@@ -20,75 +25,16 @@
     </div>
 </template>
 <script>
+    import {
+        dxtables
+    } from '@/assets/js/base'
     export default {
         data() {
             return {
-                tableData: [{
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }, {
-                    dsfdsga: '100',
-                    dsfdsgb: '好活动好活动好活动好活动',
-                    dsfdsgc: '观察实际',
-                    dsfdsgd: 'B同学',
-                    dsfdsge: '2020-4-28 15:30',
-                    dsfdsgf: '2020-4-28 15:30'
-                }]
+
             }
         },
+        mixins: [dxtables],
         components: {},
         methods: {
             shnhase(ids) {
@@ -97,11 +43,21 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.tableData.splice(ids, 1);
+                    this.delpinglun(ids.id)
                 })
+            },
+            async getinit() {
+                this.tableData = await this.$api.hdgl.getpinglun(3)
+            },
+            async delpinglun(id) {
+                const djjhhe = await this.$api.hdgl.delpinglun(id)
+                this.$message.success(djjhhe.msg)
+                this.getinit()
             }
         },
-        mounted() {}
+        mounted() {
+            this.getinit()
+        }
     }
 
 </script>

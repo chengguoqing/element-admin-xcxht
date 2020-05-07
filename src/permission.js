@@ -72,3 +72,24 @@ router.afterEach(() => {
   // finish progress bar
   NProgress.done()
 })
+
+
+
+
+
+
+/* 格式化时间 */
+Date.prototype.times = function (t) {
+    let time = new Date()
+    time.setTime(this)
+    var Year = time.getFullYear()
+    var Month = time.getMonth() + 1
+    var Data = time.getDate() < 10 ? 0 + '' + time.getDate() : time.getDate()
+    var hour = time.getHours() < 10 ? 0 + '' + time.getHours() : time.getHours()
+    var Minutes = time.getMinutes() < 10 ? 0 + '' + time.getMinutes() : time.getMinutes()
+    var Seconds = time.getSeconds() < 10 ? 0 + '' + time.getSeconds() : time.getSeconds()
+    if (Month < 10) {
+        Month = (0 + '') + Month
+    }
+    return Year + '-' + Month + '-' + Data + ' ' + hour + ':' + Minutes + ':' + Seconds
+}
