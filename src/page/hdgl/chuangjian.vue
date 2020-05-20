@@ -35,7 +35,7 @@
 
                         <div class="mt40">
 <!--                            <el-button type="primary">保存</el-button>-->
-                            <el-button type="primary" @click="submitForm" :loading="loading">立即发布</el-button>
+                            <el-button type="primary" @click="submitForm" :loading="loading">立即 {{isbianji?'保存':'发布'}}</el-button>
                         </div>
                     </el-form-item>
                 </el-form>
@@ -57,6 +57,7 @@
                 inputVisible: false,
                 inputValue: '',
                 filelist: [],
+                isbianji:false, // 是否为编辑状态
                 form: {
                     activitySubject: '', // 活动主题
                     activityDesc: '', // 活动介绍
@@ -123,7 +124,7 @@
             lijmxdertr() {
                 console.log(this.imgarray);
             },
-            submitForm(formName) {
+            submitForm() {
                 this.$refs.ruleForm.validate(async (valid) => {
                     if (valid) {
                         let jhhe = []
@@ -153,6 +154,7 @@
             const czsd = this.$route.query // 获取浏览器传过来的值
             // 有id 为编辑
             if (czsd.id) {
+                this.isbianji = true
                 this.form.id = czsd.id
                 this.form.activitySubject = czsd.activitySubject
                 this.form.activityDesc = czsd.activityDesc
@@ -183,8 +185,5 @@
 
 </style>
 <style lang='scss' scoped>
-    .mmmndxertr {
-        width: 640px
-    }
-
+  
 </style>

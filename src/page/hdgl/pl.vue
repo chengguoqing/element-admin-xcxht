@@ -1,3 +1,4 @@
+<!--评论列表-->
 <template>
     <div class="app-container">
         <el-table :data="tableData" class="mt20 fz12" border>
@@ -19,7 +20,7 @@
         </el-table>
 
         <div class="mt40 tr">
-            <el-pagination background :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="100" layout="total, sizes, prev, pager, next, jumper,slot" :total="400">
+           <el-pagination background :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]"  layout="total, sizes, prev, pager, next, jumper,slot" :total="total" @current-change="jjncdrt">
             </el-pagination>
         </div>
     </div>
@@ -47,7 +48,11 @@
                 })
             },
             async getinit() {
-                this.tableData = await this.$api.hdgl.getpinglun(3)
+                let skje = {}
+                skje.pageNum = this.pageNum
+                let res = await this.$api.hdgl.getpinglun(skje)
+                this.total = res.total
+                this.tableData = res.data
             },
             async delpinglun(id) {
                 const djjhhe = await this.$api.hdgl.delpinglun(id)

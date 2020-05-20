@@ -75,6 +75,14 @@ export const constantRoutes = [
                 meta: {
                     title: '创建活动',
                 }
+            }, {
+                path: 'hdxq',
+                hidden: true,
+                component: () => import('@/page/hdgl/hdxq'),
+                name: 'chuangjian',
+                meta: {
+                    title: '活动详情',
+                }
             }
   ]
 },
@@ -82,14 +90,31 @@ export const constantRoutes = [
         path: '/consultiveManagement',
         component: Layout,
         children: [{
-            path: 'index',
-            component: () => import('@/page/consultiveManagement'),
-            name: 'consultiveManagement',
-            meta: {
-                title: '咨询管理',
-                icon: 'documentation'
-            }
-  }]
+                path: 'index',
+                component: () => import('@/page/consultiveManagement'),
+                name: 'consultiveManagement',
+                meta: {
+                    title: '咨询管理',
+                    icon: 'documentation'
+                }
+        }, {
+                path: 'cxzx',
+                hidden: true,
+                component: () => import('@/page/cxzx'),
+                name: 'cxzx',
+                meta: {
+                    title: '创建咨询'
+                }
+        }, {
+                path: 'zxxq',
+                hidden: true,
+                component: () => import('@/page/zxxq'),
+                name: 'zxxq',
+                meta: {
+                    title: '咨询详情'
+                }
+        }
+    ]
 },
     {
         path: '/vote',
@@ -192,7 +217,7 @@ export const constantRoutes = [
                 meta: {
                     title: '上传成绩'
                 }
-            },{
+            }, {
                 path: 'scjz',
                 hidden: true,
                 component: () => import('@/page/classList/scjz'),

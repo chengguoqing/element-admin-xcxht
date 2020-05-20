@@ -1,3 +1,4 @@
+<!--活动列表-->
 <template>
     <div class="app-container">
         <el-row :gutter="20">
@@ -60,7 +61,7 @@
             </el-table-column>
             <el-table-column label="操作" align="center">
                 <template slot-scope="scope">
-                    <span class="ls sz">查看</span>
+                    <span class="ls sz" @click="hf('hdxq?id='+scope.row.id)">查看</span>
                     <span class="ls ml10 sz" @click="cnjhhgsd(scope.row)">编辑</span>
                     <span class="ls ml10 sz"@click="xiazai(scope.row)">
                         
@@ -85,7 +86,7 @@
         </el-table>
 
         <div class="mt20 tr">
-            <el-pagination background :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="100" layout="total, sizes, prev, pager, next, jumper,slot" :total="400">
+            <el-pagination background :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]"  layout="total, sizes, prev, pager, next, jumper,slot" :total="total" @current-change="jjncdrt">
             </el-pagination>
         </div>
         <el-dialog title="可将某张设置为本活动宣传图" :visible.sync="dialogVisible" width="600px" :modal-append-to-body="false">
@@ -143,7 +144,10 @@
                 sder.homePageFlag = this.homePageFlag ? 0 : 1
                 sder.activityCreator = 'tx'
                 sder.activitySubject = this.activitySubject
-                this.tableData = await this.$api.hdgl.getactivityListAll(sder)
+                sder.pageNum = this.pageNum
+                let  res = await this.$api.hdgl.getactivityListAll(sder)
+                this.total = res.total
+                this.tableData = res.data
             },
             cnjhhgsd(datd) {
                 datd.activityImgList = JSON.stringify(datd.activityImgList)
