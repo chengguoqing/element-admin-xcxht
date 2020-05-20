@@ -130,7 +130,7 @@ export const constantRoutes = [
                 component: () => import('@/page/vote/index'),
                 name: 'vote',
                 meta: {
-                    title: '投票后台'
+                    title: '比赛活动'
                 }
             },
             {
