@@ -66,6 +66,7 @@ export const dxtables = {
             tableData: [],
             currentPage4: 1,
             pageNum: 1, // 当前页码
+            pageSize:10,
             total: 0 // 总共的条数
         }
     },

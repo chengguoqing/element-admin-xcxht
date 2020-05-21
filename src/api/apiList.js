@@ -2,8 +2,10 @@
 import hdgl from './hdgl'
 import user from './user/index.js'
 import consultiveManagement from './consultiveManagement/index.js'
+import vote from './vote/index.js'
 export default {
     hdgl,
     user,
-    consultiveManagement
+    consultiveManagement,
+    vote
 }
