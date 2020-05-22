@@ -63,7 +63,7 @@
                 <template slot-scope="scope">
                     <span class="ls sz" @click="hf('hdxq?id='+scope.row.id)">查看</span>
                     <span class="ls ml10 sz" @click="cnjhhgsd(scope.row)">编辑</span>
-                    <span class="ls ml10 sz"@click="xiazai(scope.row)">
+                    <span class="ls ml10 sz" @click="xiazai(scope.row)">
                         
                         <span v-if="scope.row.lowerFlag==0">上架</span>
                             <span v-else-if="scope.row.lowerFlag==1">下架</span>

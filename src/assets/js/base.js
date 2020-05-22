@@ -43,7 +43,11 @@ export const upimg = {
                 });
                 let jjhse = {}
                 jjhse.imgUrl = 'https://testcheng.oss-cn-shanghai.aliyuncs.com/' + jjhsd
-                that.form.activityImgList.push(jjhse)
+                try {
+                    that.form.activityImgList.push(jjhse)
+                }catch (e) {
+                    that.form.headImgUrl = jjhse.imgUrl
+                }
             }).catch(err => {
                 that.$message.error('上传失败，请重试。');
                 console.log("err:", err);
